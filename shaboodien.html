@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ziyaad Shaboodien - Neuron Scoring and Memory Consolidation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="banner">
+<div>
+<h1>Neuron Scoring and Memory Consolidation</h1>
+<p>Ziyaad Shaboodien</p>
+<p>Computer Science Honours Project, University of Cape Town, 2026</p>
+</div>
+</div>
+
+<div id="nav">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="delfava.html">Nathan Del Fava</a></li>
+<li><a class="current" href="shaboodien.html">Ziyaad Shaboodien</a></li>
+</ul>
+</div>
+
+<div id="content">
+
+<h2>Background</h2>
+
+<p>In biological brains, memory is consolidated largely offline during sleep. Recent activity
+is replayed and the synapses that carried it are strengthened or pruned. Adult neurogenesis
+adds a second mechanism: new neurons are introduced into a trained circuit and integrated
+slowly, so the circuit gains capacity without losing what it already encodes.</p>
+
+<p>CTT borrows both ideas. The plastic layer is paused periodically, its neurons are scored,
+the least useful are removed, new neurons are introduced in their place, and the layer is
+renormalised before training resumes. What the score should measure is an open question.
+Scoring a neuron in isolation, by its own activation magnitude and gradient, says nothing
+about the role it plays in a circuit. A Hebbian score, computed from co-activation with its
+inputs, is intended to capture that.</p>
+
+<h2>Aims</h2>
+
+<ul>
+<li>Determine whether Hebbian-scored turnover applied during simulated sleep cycles produces
+more robust memory consolidation than scoring neurons in isolation.</li>
+<li>Compare CTT against regularisation and stochastic masking baselines on the same continual
+task sequence.</li>
+<li>Establish whether experience replay, elastic weight consolidation and synaptic scaling are
+sufficient on their own for this sequence.</li>
+</ul>
+
+<h2>Method</h2>
+
+<h3>Task sequence</h3>
+
+<p>An LSTM foraging agent is trained through a sequence of four seasons: Summer, Autumn,
+Winter and Spring. Each season has its own resource availability and survival pressure. The
+agent sees each season once, in order, and the final model is then evaluated on all four. A
+model that has forgotten an earlier season cannot survive it.</p>
+
+<h3>Sleep cycles</h3>
+
+<p>Training is punctuated by offline phases that stand in for sleep. During a sleep cycle no
+new experience is collected. Stored trajectories are replayed, neurons are scored, turnover is
+applied, and homeostatic scaling restores the activity statistics of the layer.</p>
+
+<h3>Conditions</h3>
+
+<table>
+<tr><th>LSTM Base</th><td>Unmodified recurrent policy.</td></tr>
+<tr><th>Dropout</th><td>Stochastic masking of activations.</td></tr>
+<tr><th>Zoneout</th><td>Stochastic retention of the hidden state.</td></tr>
+<tr><th>CTT_Normal</th><td>Turnover using the isolation scorer.</td></tr>
+<tr><th>CTT_GHOST</th><td>Turnover using the Hebbian (GHOST) scorer.</td></tr>
+</table>
+
+<p>All conditions also run with experience replay, elastic weight consolidation and synaptic
+scaling, so CTT is compared against an existing continual learning stack rather than against
+an unprotected baseline.</p>
+
+<h2>The two scorers</h2>
+
+<p>Each neuron i in the plastic layer receives a score. The lowest-scoring fraction is killed
+at the next turnover event.</p>
+
+<figure>
+<img src="assets/scorer_eq.png" alt="S(i) equals alpha times importance minus beta times redundancy, where importance is the product of mean absolute activation and mean absolute gradient, and redundancy is the maximum correlation with another hidden unit">
+<figcaption>Figure 1: The original isolation scorer. Importance rewards neurons that are both
+active and useful to the loss. Redundancy penalises neurons whose activity duplicates another
+unit.</figcaption>
+</figure>
+
+<figure>
+<img src="assets/ghost_eq.png" alt="G(i) equals one over the sum of absolute input weights plus epsilon, multiplied by the sum over j of the absolute weight times the correlation between input x_j and activation a_i">
+<figcaption>Figure 2: The GHOST scorer. A weight-normalised Hebbian measure. A neuron scores
+highly when its activation co-varies with the inputs it actually listens to, rather than when
+it is simply active.</figcaption>
+</figure>
+
+<h2>Results</h2>
+
+<figure>
+<img src="assets/survivability.png" alt="Heatmap of survival rate across Summer, Autumn, Winter and Spring for five architectures">
+<figcaption>Figure 3: Survival rate of the final model in each season.</figcaption>
+</figure>
+
+<p>The baseline, dropout and zoneout models survive only the season they were trained on
+last. Every earlier season sits at 0%. Both CTT variants retain non-zero survivability in
+Autumn and Winter, which is direct evidence that turnover preserves something the other
+architectures lose.</p>
+
+<p>The difference between the two scorers is small and inconsistent. GHOST is ahead in Autumn
+and Spring and behind in Winter. Summer is unsolved by every condition, which points to a
+property of the task rather than of the architecture.</p>
+
+<h2>Findings</h2>
+
+<ul>
+<li>CTT showed evidence of remembering. It is the only intervention tested that keeps earlier
+seasons alive in the final model.</li>
+<li>Scorers are second order to architecture. Swapping the isolation scorer for GHOST moves
+survivability far less than adding turnover does.</li>
+<li>Replay, elastic weight consolidation and synaptic scaling were not sufficient for this
+task sequence. The stack still collapses to the most recent season.</li>
+<li>Future work should focus on new algorithms for continual reinforcement learning task
+sequences rather than on further refinements of the scoring function.</li>
+</ul>
+
+<h2>Documents</h2>
+
+<ul>
+<li><a href="assets/BIONN_Project_Poster.pdf">Project poster</a> (PDF)</li>
+<!-- Add individual documents to assets/ and link them here, for example:
+<li><a href="assets/SHBZIY001_Final_Paper.pdf">Final paper</a> (PDF)</li>
+<li><a href="assets/SHBZIY001_Literature_Review.pdf">Literature review</a> (PDF)</li>
+<li><a href="assets/SHBZIY001_Code.zip">Source code</a> (ZIP)</li>
+-->
+<li>Final paper (to be added)</li>
+<li>Literature review (to be added)</li>
+<li>Source code (to be added)</li>
+</ul>
+
+</div>
+
+<div id="footer">
+<div>
+<img src="assets/uct_logo.png" alt="University of Cape Town">
+<img src="assets/sit_logo.png" alt="UCT School of IT">
+<p>Department of Computer Science, University of Cape Town, South Africa</p>
+<p>Ziyaad Shaboodien &lt;<a href="mailto:SHBZIY001@myuct.ac.za">SHBZIY001@myuct.ac.za</a>&gt;<br>
+Supervisor: A/Prof. Geoff Nitschke<br>
+Co-supervisor: Bilal Aslan</p>
+</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nathan Del Fava - Turnover Dynamics and Zero-Shot Generalisation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="banner">
+<div>
+<h1>Turnover Dynamics and Zero-Shot Generalisation</h1>
+<p>Nathan Del Fava</p>
+<p>Computer Science Honours Project, University of Cape Town, 2026</p>
+</div>
+</div>
+
+<div id="nav">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a class="current" href="delfava.html">Nathan Del Fava</a></li>
+<li><a href="shaboodien.html">Ziyaad Shaboodien</a></li>
+</ul>
+</div>
+
+<div id="content">
+
+<h2>Background</h2>
+
+<p>CTT has two settings that are easy to confuse. Turnover magnitude is how much of the
+plastic layer is disturbed at each turnover event. The kill/birth ratio is whether that
+disturbance leaves the layer shrinking, balanced or growing. The biological analogy suggests
+the ratio should matter, since a circuit that is pruned and rebuilt in balance keeps capacity
+free for new structure without discarding what it already represents.</p>
+
+<p>Catastrophic forgetting is usually measured over a sequence of tasks. This part of the
+project uses zero-shot scale transfer instead. A policy that has memorised the mazes it
+trained on will fail when the maze grows. A policy that has learned a transferable navigation
+strategy will degrade more slowly. If turnover shapes what the plastic layer represents, the
+kill/birth ratio should show up in this measure.</p>
+
+<h2>Aims</h2>
+
+<ul>
+<li>Sweep the kill/birth ratio across shrinking, balanced and growing regimes at three
+turnover magnitudes, and measure the zero-shot solve rate on mazes larger than any seen in
+training.</li>
+<li>Separate the contribution of killing from the contribution of rebirth by including a
+death-only condition that never rebuilds.</li>
+<li>Establish whether any apparent effect survives a reasonable number of random seeds.</li>
+</ul>
+
+<h2>Environment</h2>
+
+<figure>
+<img src="assets/maze_env.png" alt="A 7x7 training maze and a 13x13 zero-shot maze, both showing the same 5x5 egocentric observation window, the agent, the goal and the relative goal vector">
+<figcaption>Figure 1: The observation is size invariant. The agent always sees the same local
+5x5 window, so only the magnitude of the relative goal vector grows with the maze.</figcaption>
+</figure>
+
+<table>
+<tr>
+<th>Observation</th>
+<td>31 values: the local 5x5 occupancy window (25), the relative goal vector divided by 19 (2),
+and a one-hot encoding of the last action (4).</td>
+</tr>
+<tr>
+<th>Training</th>
+<td>Mazes of 7x7 and smaller.</td>
+</tr>
+<tr>
+<th>Evaluation</th>
+<td>Frozen weights transferred to 9x9, 11x11 and 13x13. 200 fresh mazes per size, greedy
+rollouts, averaged over 8 seeds.</td>
+</tr>
+</table>
+
+<h2>Conditions</h2>
+
+<p>Turnover magnitude and kill/birth ratio were varied independently, giving ten turnover
+conditions and four reference conditions. The plastic zone is sized for the largest growing
+condition, so every setting is compared at equal parameter count.</p>
+
+<figure>
+<img src="assets/turnover_grid.png" alt="Grid of tested kill and birth percentages across shrinking, balanced and growing regimes at high, mid and low turnover magnitude, plus reference conditions">
+<figcaption>Figure 2: The tested conditions.</figcaption>
+</figure>
+
+<h2>Results</h2>
+
+<figure>
+<img src="assets/scale_generalisation.png" alt="Solve rate against maze size: the baseline LSTM and CTT both reach 71 percent at 13x13 while the death-only condition reaches 54 percent">
+<figcaption>Figure 3: Zero-shot solve rate against maze size. The shaded region marks the
+sizes seen during training.</figcaption>
+</figure>
+
+<p>All ten turnover conditions sit inside the baseline's confidence band from 5x5 through
+13x13. At the largest size CTT and the unmodified LSTM both solve 71% of mazes. The ratio
+sweep does not move the curve in either direction.</p>
+
+<p>The one condition that separates is death-only (5/0), which reaches 54%. Removing
+low-utility neurons without replacing them is actively harmful, which indicates that the
+value in turnover comes from the rebuilding rather than the pruning.</p>
+
+<h2>Findings</h2>
+
+<ul>
+<li>The kill/birth ratio had no effect on generalisation. Every ratio tracked the
+baselines.</li>
+<li>An apparent effect at 3 seeds disappeared at 8 seeds.</li>
+<li>In this setup CTT carries a built-in inefficiency. It pays the compute cost of scoring,
+killing and rebuilding without a measurable return in scale transfer.</li>
+<li>Rebirth is vital. Death-only was the only condition that clearly degraded.</li>
+</ul>
+
+<h2>Documents</h2>
+
+<ul>
+<li><a href="assets/BIONN_Project_Poster.pdf">Project poster</a> (PDF)</li>
+<!-- Add individual documents to assets/ and link them here, for example:
+<li><a href="assets/DLFNAT001_Final_Paper.pdf">Final paper</a> (PDF)</li>
+<li><a href="assets/DLFNAT001_Literature_Review.pdf">Literature review</a> (PDF)</li>
+<li><a href="assets/DLFNAT001_Code.zip">Source code</a> (ZIP)</li>
+-->
+<li>Final paper (to be added)</li>
+<li>Literature review (to be added)</li>
+<li>Source code (to be added)</li>
+</ul>
+
+</div>
+
+<div id="footer">
+<div>
+<img src="assets/uct_logo.png" alt="University of Cape Town">
+<img src="assets/sit_logo.png" alt="UCT School of IT">
+<p>Department of Computer Science, University of Cape Town, South Africa</p>
+<p>Nathan Del Fava &lt;<a href="mailto:DLFNAT001@myuct.ac.za">DLFNAT001@myuct.ac.za</a>&gt;<br>
+Supervisor: A/Prof. Geoff Nitschke<br>
+Co-supervisor: Bilal Aslan</p>
+</div>
+</div>
+
+</body>
+
+</html>

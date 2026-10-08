@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complementary Turnover Training in Continual Reinforcement Learning</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="banner">
+<div>
+<h1>Complementary Turnover Training in Continual Reinforcement Learning</h1>
+<p>Nathan Del Fava and Ziyaad Shaboodien</p>
+<p>Computer Science Honours Project, University of Cape Town, 2026</p>
+</div>
+</div>
+
+<div id="nav">
+<ul>
+<li><a class="current" href="index.html">Home</a></li>
+<li><a href="delfava.html">Nathan Del Fava</a></li>
+<li><a href="shaboodien.html">Ziyaad Shaboodien</a></li>
+</ul>
+</div>
+
+<div id="content">
+
+<h2>Background</h2>
+
+<p>Neural networks suffer from catastrophic forgetting. When a network is trained on a new
+task, the weights that encoded earlier tasks are overwritten and the earlier skills are lost.
+The problem is worse in reinforcement learning, where there is no fixed training set to
+revisit and the data distribution shifts as the policy changes.</p>
+
+<p>Complementary Turnover Training (CTT) is a biologically inspired architecture that
+addresses this by continually replacing neurons rather than only adjusting their weights. It
+is motivated by adult neurogenesis and by the way biological memory is consolidated offline
+during sleep. CTT maintains a dedicated plastic layer, periodically removes the least useful
+neurons from it, and introduces new neurons in their place.</p>
+
+<h2>Project goals</h2>
+
+<p>We implement CTT over Long Short-Term Memory (LSTM) networks and test how well it counters
+catastrophic forgetting in sequences of reinforcement learning tasks. The project is divided
+into two parts, one per student.</p>
+
+<ol>
+<li>Does Hebbian-scored neural turnover during simulated sleep cycles enable more robust
+memory consolidation in an LSTM foraging agent than scoring neurons in isolation?
+(<a href="shaboodien.html">Ziyaad Shaboodien</a>)</li>
+<li>Does the kill/birth ratio govern how well a CTT-based recurrent policy generalises
+zero-shot to mazes larger than any seen in training?
+(<a href="delfava.html">Nathan Del Fava</a>)</li>
+<li>Is rebirth necessary, or does the benefit of turnover come from removing low-utility
+neurons alone? (<a href="delfava.html">Nathan Del Fava</a>)</li>
+</ol>
+
+<h2>The CTT pipeline</h2>
+
+<p>Turnover runs as a five-stage loop over the plastic layer. The rest of the network trains
+normally.</p>
+
+<ol class="stages">
+<li><strong>Score.</strong> Compute a health or utility score for each neuron.</li>
+<li><strong>Kill.</strong> Permanently remove the bottom p% of neurons by score.</li>
+<li><strong>Birth.</strong> Replace each killed neuron with a new one chosen through
+selection.</li>
+<li><strong>Gate.</strong> Newborn neurons start silent and are ramped in linearly over
+time.</li>
+<li><strong>Homeostasis.</strong> Activity statistics are rescaled to keep the layer
+stable.</li>
+</ol>
+
+<h2>Results</h2>
+
+<figure>
+<img src="assets/survivability.png" alt="Heatmap of survival rate by season for LSTM Base, Dropout, Zoneout, CTT_Normal and CTT_GHOST">
+<figcaption>Figure 1: Survival rate of the final model in each season of the foraging task
+sequence. The baseline, dropout and zoneout models survive only the last season they saw.
+Both CTT variants retain some ability in earlier seasons.</figcaption>
+</figure>
+
+<figure>
+<img src="assets/scale_generalisation.png" alt="Solve rate against maze size for the baseline LSTM, CTT and a death-only condition">
+<figcaption>Figure 2: Zero-shot solve rate on mazes larger than those used in training. CTT
+and the baseline LSTM both reach 71% at 13x13. The death-only condition, which removes
+neurons without replacing them, reaches 54%.</figcaption>
+</figure>
+
+<h2>Conclusions</h2>
+
+<ul>
+<li>CTT showed evidence of remembering earlier tasks. It is the only architecture tested that
+retained any ability in seasons other than the most recent one.</li>
+<li>The choice of scorer is second order to the architecture. Replacing the isolation scorer
+with the Hebbian GHOST scorer changed results far less than adding turnover did.</li>
+<li>Experience replay, elastic weight consolidation and synaptic scaling were not sufficient
+on their own for this task sequence.</li>
+<li>The kill/birth ratio had no measurable effect on zero-shot generalisation. Every ratio
+tracked the baselines.</li>
+<li>Rebirth is necessary. Killing neurons without replacing them was the only setting that
+clearly degraded performance.</li>
+<li>Future work should focus on new algorithms for continual reinforcement learning task
+sequences rather than on refining the neuron scoring function.</li>
+</ul>
+
+<h2>Joint documents</h2>
+
+<ul>
+<li><a href="assets/BIONN_Project_Poster.pdf">Project poster</a> (PDF)</li>
+<!-- Add the joint documents to assets/ and link them here, for example:
+<li><a href="assets/project_proposal.pdf">Project proposal</a> (PDF)</li>
+<li><a href="assets/proposal_presentation.pdf">Proposal presentation</a> (PDF)</li>
+<li><a href="assets/source_code.zip">Source code</a> (ZIP)</li>
+-->
+<li>Project proposal (to be added)</li>
+<li>Proposal presentation (to be added)</li>
+<li>Source code (to be added)</li>
+</ul>
+
+<p>Individual reports, literature reviews and source code are linked on each student's page.</p>
+
+</div>
+
+<div id="footer">
+<div>
+<img src="assets/uct_logo.png" alt="University of Cape Town">
+<img src="assets/sit_logo.png" alt="UCT School of IT">
+<p>Department of Computer Science, University of Cape Town, South Africa</p>
+<p>Nathan Del Fava &lt;<a href="mailto:DLFNAT001@myuct.ac.za">DLFNAT001@myuct.ac.za</a>&gt;<br>
+Ziyaad Shaboodien &lt;<a href="mailto:SHBZIY001@myuct.ac.za">SHBZIY001@myuct.ac.za</a>&gt;<br>
+Supervisor: A/Prof. Geoff Nitschke<br>
+Co-supervisor: Bilal Aslan</p>
+</div>
+</div>
+
+</body>
+
+</html>

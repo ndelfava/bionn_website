@@ -1,0 +1,203 @@
+/* Complementary Turnover Training - honours project website */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffffff;
+    color: #222222;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+h1, h2, h3 {
+    color: #14687a;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 1.8em;
+    margin: 0 0 0.3em;
+}
+
+h2 {
+    border-bottom: 1px solid #d6dde0;
+    font-size: 1.3em;
+    margin: 2em 0 0.8em;
+    padding-bottom: 0.2em;
+}
+
+h3 {
+    font-size: 1.05em;
+    margin: 1.5em 0 0.4em;
+}
+
+p, ul, ol {
+    margin: 0 0 1em;
+}
+
+ul, ol {
+    padding-left: 1.4em;
+}
+
+li {
+    margin-bottom: 0.4em;
+}
+
+a {
+    color: #14687a;
+}
+
+/* header */
+
+#banner {
+    background-color: #14687a;
+    color: #ffffff;
+    padding: 2em 1.5em;
+}
+
+#banner div {
+    margin: 0 auto;
+    max-width: 860px;
+}
+
+#banner h1 {
+    color: #ffffff;
+}
+
+#banner p {
+    color: #d7e8ed;
+    margin: 0;
+}
+
+/* navigation */
+
+#nav {
+    background-color: #f0f4f5;
+    border-bottom: 1px solid #d6dde0;
+}
+
+#nav ul {
+    list-style: none;
+    margin: 0 auto;
+    max-width: 860px;
+    padding: 0 1.5em;
+}
+
+#nav li {
+    display: inline-block;
+    margin: 0 1.5em 0 0;
+}
+
+#nav a {
+    display: inline-block;
+    padding: 0.7em 0;
+    text-decoration: none;
+}
+
+#nav a:hover {
+    text-decoration: underline;
+}
+
+#nav a.current {
+    border-bottom: 3px solid #14687a;
+    font-weight: bold;
+}
+
+/* content */
+
+#content {
+    margin: 0 auto;
+    max-width: 860px;
+    padding: 1em 1.5em 3em;
+}
+
+#content h2:first-of-type {
+    margin-top: 1.5em;
+}
+
+/* the five turnover stages */
+
+ol.stages {
+    list-style: none;
+    padding-left: 0;
+}
+
+ol.stages li {
+    border-left: 4px solid #cccccc;
+    margin-bottom: 0.6em;
+    padding-left: 0.8em;
+}
+
+ol.stages li:nth-child(1) { border-left-color: #f4524d; }
+ol.stages li:nth-child(2) { border-left-color: #f59a23; }
+ol.stages li:nth-child(3) { border-left-color: #ffd43b; }
+ol.stages li:nth-child(4) { border-left-color: #2ca24c; }
+ol.stages li:nth-child(5) { border-left-color: #1b84a0; }
+
+/* figures */
+
+figure {
+    margin: 1.5em 0;
+}
+
+figure img {
+    border: 1px solid #d6dde0;
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+figcaption {
+    color: #555555;
+    font-size: 0.9em;
+    margin-top: 0.5em;
+}
+
+/* tables */
+
+table {
+    border-collapse: collapse;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #d6dde0;
+    padding: 0.5em 0.7em;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: #f0f4f5;
+}
+
+/* footer */
+
+#footer {
+    background-color: #f0f4f5;
+    border-top: 1px solid #d6dde0;
+    color: #444444;
+    font-size: 0.9em;
+    padding: 1.5em;
+}
+
+#footer div {
+    margin: 0 auto;
+    max-width: 860px;
+}
+
+#footer img {
+    height: 50px;
+    margin-right: 1.5em;
+    vertical-align: middle;
+    width: auto;
+}
+
+#footer p {
+    margin: 0.8em 0 0;
+}
