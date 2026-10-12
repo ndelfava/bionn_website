@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1076" height="506" viewBox="0 0 1000 470" font-family="Helvetica, Arial, sans-serif" role="img">
+<title>Regime solve rates at 13x13 with three seeds and with eight seeds</title>
+<rect width="1000" height="470" fill="#fcfcfb"/>
+<text x="40.0" y="36.0" font-size="19" fill="#1f1f1f" text-anchor="start" font-weight="normal">Three seeds suggested a regime effect; eight seeds removed it</text>
+<circle cx="46.0" cy="66.0" r="6" fill="#fcfcfb"/><circle cx="46.0" cy="66.0" r="5" fill="#fcfcfb" stroke="#454545" stroke-width="2"/>
+<text x="60.0" y="71.0" font-size="14" fill="#454545" text-anchor="start" font-weight="normal">First 3 seeds</text>
+<circle cx="190.0" cy="66.0" r="5" fill="#454545" stroke="#fcfcfb" stroke-width="2"/>
+<text x="204.0" y="71.0" font-size="14" fill="#454545" text-anchor="start" font-weight="normal">All 8 seeds (same 200 mazes)</text>
+<text x="40.0" y="100.0" font-size="13" fill="#686868" text-anchor="start" font-weight="normal">Pooled regime</text>
+<text x="962.0" y="100.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">3 seeds → 8 seeds</text>
+<line x1="210.0" y1="108.0" x2="210.0" y2="406.0" stroke="#e6e6e2" stroke-width="1"/>
+<line x1="292.9" y1="108.0" x2="292.9" y2="406.0" stroke="#e6e6e2" stroke-width="1"/>
+<line x1="375.7" y1="108.0" x2="375.7" y2="406.0" stroke="#e6e6e2" stroke-width="1"/>
+<line x1="458.6" y1="108.0" x2="458.6" y2="406.0" stroke="#e6e6e2" stroke-width="1"/>
+<line x1="541.4" y1="108.0" x2="541.4" y2="406.0" stroke="#e6e6e2" stroke-width="1"/>
+<line x1="624.3" y1="108.0" x2="624.3" y2="406.0" stroke="#e6e6e2" stroke-width="1"/>
+<line x1="707.1" y1="108.0" x2="707.1" y2="406.0" stroke="#e6e6e2" stroke-width="1"/>
+<line x1="790.0" y1="108.0" x2="790.0" y2="406.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="40.0" y="139.0" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Baselines</text>
+<line x1="663.9" y1="134.0" x2="641.9" y2="134.0" stroke="#2a78d6" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="663.9" cy="134.0" r="6.5" fill="#fcfcfb"/><circle cx="663.9" cy="134.0" r="5.5" fill="#fcfcfb" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="641.9" cy="134.0" r="5.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="962.0" y="139.0" font-size="14" fill="#1f1f1f" text-anchor="end" font-weight="normal">72.4% → 71.1%</text>
+<text x="40.0" y="183.0" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Growing</text>
+<line x1="743.0" y1="178.0" x2="651.2" y2="178.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="743.0" cy="178.0" r="6.5" fill="#fcfcfb"/><circle cx="743.0" cy="178.0" r="5.5" fill="#fcfcfb" stroke="#eb6834" stroke-width="2"/>
+<circle cx="651.2" cy="178.0" r="5.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="962.0" y="183.0" font-size="14" fill="#1f1f1f" text-anchor="end" font-weight="normal">77.2% → 71.6%</text>
+<text x="40.0" y="227.0" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Shrinking</text>
+<line x1="682.3" y1="222.0" x2="663.3" y2="222.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="682.3" cy="222.0" r="6.5" fill="#fcfcfb"/><circle cx="682.3" cy="222.0" r="5.5" fill="#fcfcfb" stroke="#eb6834" stroke-width="2"/>
+<circle cx="663.3" cy="222.0" r="5.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="962.0" y="227.0" font-size="14" fill="#1f1f1f" text-anchor="end" font-weight="normal">73.5% → 72.4%</text>
+<text x="40.0" y="271.0" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Balanced</text>
+<line x1="613.9" y1="266.0" x2="596.8" y2="266.0" stroke="#eb6834" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="613.9" cy="266.0" r="6.5" fill="#fcfcfb"/><circle cx="613.9" cy="266.0" r="5.5" fill="#fcfcfb" stroke="#eb6834" stroke-width="2"/>
+<circle cx="596.8" cy="266.0" r="5.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="962.0" y="271.0" font-size="14" fill="#1f1f1f" text-anchor="end" font-weight="normal">69.4% → 68.3%</text>
+<text x="40.0" y="315.0" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Death-only</text>
+<line x1="276.3" y1="310.0" x2="360.2" y2="310.0" stroke="#5040ad" stroke-width="2" stroke-opacity="0.45"/>
+<circle cx="276.3" cy="310.0" r="6.5" fill="#fcfcfb"/><circle cx="276.3" cy="310.0" r="5.5" fill="#fcfcfb" stroke="#5040ad" stroke-width="2"/>
+<circle cx="360.2" cy="310.0" r="5.5" fill="#5040ad" stroke="#fcfcfb" stroke-width="2"/>
+<text x="962.0" y="315.0" font-size="14" fill="#1f1f1f" text-anchor="end" font-weight="normal">49.0% → 54.1%</text>
+<line x1="40.0" y1="340.0" x2="962.0" y2="340.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="40.0" y="368.0" font-size="14" fill="#454545" text-anchor="start" font-weight="bold">Spread of the</text>
+<text x="40.0" y="386.0" font-size="14" fill="#454545" text-anchor="start" font-weight="bold">three regimes</text>
+<line x1="613.9" y1="362.0" x2="743.0" y2="362.0" stroke="#b9b8b2" stroke-width="8" stroke-linecap="round"/>
+<text x="962.0" y="367.0" font-size="14" fill="#1f1f1f" text-anchor="end" font-weight="normal">3 seeds: 7.8 pp</text>
+<line x1="596.8" y1="388.0" x2="663.3" y2="388.0" stroke="#6f6e69" stroke-width="8" stroke-linecap="round"/>
+<text x="962.0" y="393.0" font-size="14" fill="#1f1f1f" text-anchor="end" font-weight="normal">8 seeds: 4.0 pp</text>
+<line x1="210.0" y1="406.0" x2="790.0" y2="406.0" stroke="#b4b3ad" stroke-width="1"/>
+<text x="210.0" y="428.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">45%</text>
+<text x="292.9" y="428.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">50%</text>
+<text x="375.7" y="428.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">55%</text>
+<text x="458.6" y="428.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">60%</text>
+<text x="541.4" y="428.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">65%</text>
+<text x="624.3" y="428.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">70%</text>
+<text x="707.1" y="428.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">75%</text>
+<text x="790.0" y="428.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">80%</text>
+<text x="500.0" y="452.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal">Solve rate at 13x13</text>
+</svg>

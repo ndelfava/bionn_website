@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1076" height="506" viewBox="0 0 1000 470" font-family="Helvetica, Arial, sans-serif" role="img">
+<title>Number of active plastic units over training for growing, balanced, shrinking and death-only turnover</title>
+<rect width="1000" height="470" fill="#fcfcfb"/>
+<text x="40.0" y="36.0" font-size="19" fill="#1f1f1f" text-anchor="start" font-weight="normal">What the ratio does to the plastic layer during training</text>
+<text x="40.0" y="62.0" font-size="14" fill="#454545" text-anchor="start" font-weight="normal">Active units in the 384-slot plastic layer: the high-magnitude ratio of each regime, plus death-only</text>
+<rect x="95.0" y="95.0" width="160.0" height="280.0" rx="0" fill="#f1f1ed"/>
+<text x="175.0" y="200.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">warm-up:</text>
+<text x="175.0" y="218.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">no turnover</text>
+<line x1="95.0" y1="375.0" x2="735.0" y2="375.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="380.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">160</text>
+<line x1="95.0" y1="328.3" x2="735.0" y2="328.3" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="333.3" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">200</text>
+<line x1="95.0" y1="281.7" x2="735.0" y2="281.7" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="286.7" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">240</text>
+<line x1="95.0" y1="235.0" x2="735.0" y2="235.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="240.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">280</text>
+<line x1="95.0" y1="188.3" x2="735.0" y2="188.3" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="193.3" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">320</text>
+<line x1="95.0" y1="141.7" x2="735.0" y2="141.7" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="146.7" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">360</text>
+<line x1="95.0" y1="95.0" x2="735.0" y2="95.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="100.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">400</text>
+<line x1="95.0" y1="113.7" x2="735.0" y2="113.7" stroke="#9d9c96" stroke-width="1"/>
+<text x="265.0" y="106.7" font-size="13" fill="#686868" text-anchor="start" font-weight="normal">capacity: all 384 slots in use</text>
+<line x1="95.0" y1="263.0" x2="735.0" y2="263.0" stroke="#9d9c96" stroke-width="1"/>
+<text x="265.0" y="256.0" font-size="13" fill="#686868" text-anchor="start" font-weight="normal">starting size: 256 active, 128 in reserve</text>
+<line x1="95.0" y1="352.6" x2="735.0" y2="352.6" stroke="#9d9c96" stroke-width="1"/>
+<text x="265.0" y="345.6" font-size="13" fill="#686868" text-anchor="start" font-weight="normal">minimum-alive floor: 70% of 256</text>
+<line x1="95.0" y1="375.0" x2="735.0" y2="375.0" stroke="#b4b3ad" stroke-width="1"/>
+<text x="95.0" y="399.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">0</text>
+<text x="255.0" y="399.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">1,000</text>
+<text x="415.0" y="399.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">2,000</text>
+<text x="575.0" y="399.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">3,000</text>
+<text x="735.0" y="399.0" font-size="13" fill="#686868" text-anchor="middle" font-weight="normal">4,000</text>
+<line x1="255.0" y1="375.0" x2="255.0" y2="382.0" stroke="#eb6834" stroke-width="2"/>
+<line x1="335.0" y1="375.0" x2="335.0" y2="382.0" stroke="#eb6834" stroke-width="2"/>
+<line x1="415.0" y1="375.0" x2="415.0" y2="382.0" stroke="#eb6834" stroke-width="2"/>
+<line x1="495.0" y1="375.0" x2="495.0" y2="382.0" stroke="#eb6834" stroke-width="2"/>
+<line x1="575.0" y1="375.0" x2="575.0" y2="382.0" stroke="#eb6834" stroke-width="2"/>
+<line x1="655.0" y1="375.0" x2="655.0" y2="382.0" stroke="#eb6834" stroke-width="2"/>
+<line x1="735.0" y1="375.0" x2="735.0" y2="382.0" stroke="#eb6834" stroke-width="2"/>
+<text x="415.0" y="425.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal">Training updates (orange ticks mark the seven turnover events)</text>
+<text x="28.0" y="235.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal" transform="rotate(-90 28 235.0)">Active units</text>
+<path d="M95.0,263.0 L175.0,263.0 L175.0,263.0 L255.0,263.0 L255.0,233.8 L335.0,233.8 L335.0,201.2 L415.0,201.2 L415.0,165.0 L495.0,165.0 L495.0,125.3 L575.0,125.3 L575.0,113.7 L655.0,113.7 L655.0,113.7 L735.0,113.7 L735.0,113.7" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M95.0,263.0 L175.0,263.0 L175.0,263.0 L255.0,263.0 L255.0,263.0 L335.0,263.0 L335.0,263.0 L415.0,263.0 L415.0,263.0 L495.0,263.0 L495.0,263.0 L575.0,263.0 L575.0,263.0 L655.0,263.0 L655.0,263.0 L735.0,263.0 L735.0,263.0" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M95.0,263.0 L175.0,263.0 L175.0,263.0 L255.0,263.0 L255.0,293.3 L335.0,293.3 L335.0,320.2 L415.0,320.2 L415.0,329.5 L495.0,329.5 L495.0,330.7 L575.0,330.7 L575.0,330.7 L655.0,330.7 L655.0,330.7 L735.0,330.7 L735.0,330.7" fill="none" stroke="#eb6834" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M95.0,263.0 L175.0,263.0 L175.0,263.0 L255.0,263.0 L255.0,277.0 L335.0,277.0 L335.0,291.0 L415.0,291.0 L415.0,303.8 L495.0,303.8 L495.0,316.7 L575.0,316.7 L575.0,328.3 L655.0,328.3 L655.0,340.0 L735.0,340.0 L735.0,350.5" fill="none" stroke="#5040ad" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="737.0" y1="113.7" x2="747.0" y2="113.7" stroke="#b4b3ad" stroke-width="1"/>
+<line x1="749.0" y1="113.7" x2="763.0" y2="113.7" stroke="#eb6834" stroke-width="2" stroke-linecap="round"/>
+<text x="769.0" y="118.7" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Growing 20/30: 384</text>
+<line x1="737.0" y1="263.0" x2="747.0" y2="263.0" stroke="#b4b3ad" stroke-width="1"/>
+<line x1="749.0" y1="263.0" x2="763.0" y2="263.0" stroke="#eb6834" stroke-width="2" stroke-linecap="round"/>
+<text x="769.0" y="268.0" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Balanced 20/20: 256</text>
+<line x1="737.0" y1="330.7" x2="747.0" y2="326.7" stroke="#b4b3ad" stroke-width="1"/>
+<line x1="749.0" y1="326.7" x2="763.0" y2="326.7" stroke="#eb6834" stroke-width="2" stroke-linecap="round"/>
+<text x="769.0" y="331.7" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Shrinking 20/10: 198</text>
+<line x1="737.0" y1="350.5" x2="747.0" y2="358.5" stroke="#b4b3ad" stroke-width="1"/>
+<line x1="749.0" y1="358.5" x2="763.0" y2="358.5" stroke="#5040ad" stroke-width="2" stroke-linecap="round"/>
+<text x="769.0" y="363.5" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Death-only 5/0: 181</text>
+<text x="40.0" y="458.0" font-size="13" fill="#686868" text-anchor="start" font-weight="normal">The schedule is identical in all 8 seeds. All four balanced ratios, and the static-plastic control, stay at 256 throughout.</text>
+</svg>

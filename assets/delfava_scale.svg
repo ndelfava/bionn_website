@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1076" height="506" viewBox="0 0 1000 470" font-family="Helvetica, Arial, sans-serif" role="img">
+<title>Zero-shot solve rate against maze size for the baselines, the pooled CTT ratios and death-only</title>
+<rect width="1000" height="470" fill="#fcfcfb"/>
+<text x="40.0" y="36.0" font-size="19" fill="#1f1f1f" text-anchor="start" font-weight="normal">Every kill/birth ratio generalises like the baselines; only death-only falls away</text>
+<line x1="40.0" y1="68.0" x2="66.0" y2="68.0" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<circle cx="53.0" cy="68.0" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="74.0" y="73.0" font-size="14" fill="#454545" text-anchor="start" font-weight="normal">Baseline LSTMs (vanilla, dropout, zoneout)</text>
+<line x1="395.0" y1="68.0" x2="421.0" y2="68.0" stroke="#eb6834" stroke-width="2" stroke-linecap="round"/>
+<circle cx="408.0" cy="68.0" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="429.0" y="73.0" font-size="14" fill="#454545" text-anchor="start" font-weight="normal">CTT, the 10 ratios that rebuild</text>
+<line x1="680.0" y1="68.0" x2="706.0" y2="68.0" stroke="#5040ad" stroke-width="2" stroke-linecap="round"/>
+<circle cx="693.0" cy="68.0" r="4" fill="#5040ad" stroke="#fcfcfb" stroke-width="2"/>
+<text x="714.0" y="73.0" font-size="14" fill="#454545" text-anchor="start" font-weight="normal">Death-only (kill 5%, birth 0%)</text>
+<rect x="373.0" y="105.0" width="417.0" height="270.0" rx="0" fill="#f1f1ed"/>
+<text x="385.0" y="363.0" font-size="13" fill="#686868" text-anchor="start" font-weight="normal">Larger than any maze seen in training</text>
+<line x1="95.0" y1="375.0" x2="790.0" y2="375.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="380.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">40%</text>
+<line x1="95.0" y1="330.0" x2="790.0" y2="330.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="335.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">50%</text>
+<line x1="95.0" y1="285.0" x2="790.0" y2="285.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="290.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">60%</text>
+<line x1="95.0" y1="240.0" x2="790.0" y2="240.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="245.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">70%</text>
+<line x1="95.0" y1="195.0" x2="790.0" y2="195.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="200.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">80%</text>
+<line x1="95.0" y1="150.0" x2="790.0" y2="150.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="155.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">90%</text>
+<line x1="95.0" y1="105.0" x2="790.0" y2="105.0" stroke="#e6e6e2" stroke-width="1"/>
+<text x="85.0" y="110.0" font-size="13" fill="#686868" text-anchor="end" font-weight="normal">100%</text>
+<line x1="95.0" y1="375.0" x2="790.0" y2="375.0" stroke="#b4b3ad" stroke-width="1"/>
+<text x="164.5" y="399.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal">5x5</text>
+<text x="303.5" y="399.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal">7x7</text>
+<text x="442.5" y="399.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal">9x9</text>
+<text x="581.5" y="399.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal">11x11</text>
+<text x="720.5" y="399.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal">13x13</text>
+<text x="303.5" y="417.0" font-size="12" fill="#686868" text-anchor="middle" font-weight="normal">training size</text>
+<text x="442.5" y="439.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal">Maze size (frozen weights, no further training)</text>
+<text x="28.0" y="240.0" font-size="14" fill="#454545" text-anchor="middle" font-weight="normal" transform="rotate(-90 28 240.0)">Solve rate</text>
+<path d="M164.5,105.3 L303.5,107.5 L442.5,116.5 L581.5,149.0 L720.5,224.9 L720.5,245.5 L581.5,157.6 L442.5,121.8 L303.5,109.0 L164.5,105.8 Z" fill="#2a78d6" fill-opacity="0.12" stroke="none"/>
+<path d="M164.5,105.6 L303.5,108.0 L442.5,116.2 L581.5,153.0 L720.5,227.0 L720.5,248.2 L581.5,161.7 L442.5,119.7 L303.5,109.6 L164.5,106.1 Z" fill="#eb6834" fill-opacity="0.12" stroke="none"/>
+<path d="M164.5,105.0 L303.5,107.4 L442.5,117.3 L581.5,165.6 L720.5,266.8 L720.5,356.7 L581.5,204.7 L442.5,129.8 L303.5,108.8 L164.5,105.6 Z" fill="#5040ad" fill-opacity="0.12" stroke="none"/>
+<path d="M164.5,105.6 L303.5,108.3 L442.5,119.2 L581.5,153.3 L720.5,235.2" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M164.5,105.8 L303.5,108.8 L442.5,117.9 L581.5,157.3 L720.5,237.6" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M164.5,105.3 L303.5,108.1 L442.5,123.6 L581.5,185.2 L720.5,311.7" fill="none" stroke="#5040ad" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="164.5" cy="105.6" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="303.5" cy="108.3" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="442.5" cy="119.2" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="581.5" cy="153.3" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="720.5" cy="235.2" r="4.5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="164.5" cy="105.8" r="4.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="303.5" cy="108.8" r="4.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="442.5" cy="117.9" r="4.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="581.5" cy="157.3" r="4.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="720.5" cy="237.6" r="4.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="164.5" cy="105.3" r="4.5" fill="#5040ad" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="303.5" cy="108.1" r="4.5" fill="#5040ad" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="442.5" cy="123.6" r="4.5" fill="#5040ad" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="581.5" cy="185.2" r="4.5" fill="#5040ad" stroke="#fcfcfb" stroke-width="2"/>
+<circle cx="720.5" cy="311.7" r="4.5" fill="#5040ad" stroke="#fcfcfb" stroke-width="2"/>
+<line x1="736.5" y1="219.2" x2="750.5" y2="219.2" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<text x="756.5" y="224.2" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Baseline 71.1%</text>
+<line x1="736.5" y1="247.6" x2="750.5" y2="247.6" stroke="#eb6834" stroke-width="2" stroke-linecap="round"/>
+<text x="756.5" y="252.6" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">CTT 70.5%</text>
+<line x1="736.5" y1="311.7" x2="750.5" y2="311.7" stroke="#5040ad" stroke-width="2" stroke-linecap="round"/>
+<text x="756.5" y="316.7" font-size="14" fill="#1f1f1f" text-anchor="start" font-weight="normal">Death-only 54.1%</text>
+<text x="40.0" y="458.0" font-size="13" fill="#686868" text-anchor="start" font-weight="normal">Mean ± standard error over 8 seeds. Greedy rollouts on 200 fresh mazes per size; every agent sees the same mazes.</text>
+</svg>
