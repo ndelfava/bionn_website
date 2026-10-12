@@ -6,6 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ziyaad Shaboodien - Neuron Scoring and Memory Consolidation</title>
 <link rel="stylesheet" href="style.css">
+<style>
+/* centre figures and keep them compact so they fit the column */
+figure { text-align: center; }
+figure img { margin: 0 auto; max-width: min(100%, 480px); }
+figcaption { text-align: center; }
+</style>
 </head>
 
 <body>
@@ -28,14 +34,14 @@
 
 <div id="content">
 <h2>Summary</h2>
- 
+
 <p>A significant challenge in neural network design is continual learning: the ability to learn new
 tasks without catastrophically forgetting previously learned ones. Complementary Turnover Training
 (CTT) attacks this with a biologically-inspired architecture over LSTMs, where neurons are scored on
 scales of redundancy and importance, killed and reborn, and slowly reintroduced to the network over
 time. Before any neuron can be killed it has to be scored, and that score decides which neurons the
 network keeps.</p>
- 
+
 <p>My half of the project proposes GHOST (Gradient-free Hebbian Observation and Selective
 Turnover) an originally developed scoring criterion, and evaluates it against the original CTT score and
 three baselines. GHOST keeps the neurons that fire together with their inputs. It reads only weight
@@ -43,35 +49,35 @@ magnitudes and the correlation between a neuron and what drives it, so unlike th
 never touches the gradient. I tested all five models in a reinforcement-learning foraging agent whose
 rewards reverse across four sequential seasons, and measured how much of each season survived into
 the next.</p>
- 
+
 <p>The Hebbian criterion is statistically indistinguishable from the original importance&ndash;redundancy
 scoring on every metric and every season, indicating that the scoring criterion is not the source of
 CTT's benefit. The CTT architecture did, however, retain significantly more of its learned behaviour
 than standard LSTMs in the middle seasons. For biologically-inspired agent design, this suggests
 future effort is better directed at the non-stationary learning setting than at refining
 neuron-selection criteria.</p>
- 
+
 <ul class="keyfacts">
 <li><strong>5</strong> models: three baselines, the original CTT scorer, and GHOST</li>
 <li><strong>10</strong> seeds each, every run trained to completion with no policy collapse</li>
 <li><strong>3,200</strong> episodes per run: four seasons of 800 each</li>
 <li><strong>food&rarr;poison</strong> the same patch reverses from nourishing to fatal across seasons</li>
 </ul>
- 
+
 <h2>The Continual Learning Problem</h2>
- 
+
 <p>LSTMs are strong at managing a single long-term sequential task, but weak at continual learning:
 learn a new task and the weights that solved the old one are overwritten. French describes this by
 analysing the weight-space, where good solutions appear as peaks; catastrophic forgetting is the
 sensitivity between those peaks and valleys, so that a small move to climb a new peak can radically
 disrupt what was learned before.</p>
- 
+
 <p>The standard tools for keeping recurrent networks flexible, dropout and zoneout, are per-step
 regularisers. Dropout randomly zeros a fraction of activations on each forward pass; zoneout randomly
 holds a unit at its previous timestep's value. Both inject noise during training to prevent
 co-adaptation, but no unit is ever removed and no capacity is ever renewed, and neither was built for
 a sequence of tasks.</p>
- 
+
 <p>CTT takes its design from the brain, where new neurons are born and wired in throughout adult life
 while others die, and homeostatic mechanisms keep activity stable through the churn. Its sleep cycle
 echoes the Synaptic Homeostasis Hypothesis, mimicking the proposal that the brain reorganises the
@@ -79,40 +85,40 @@ weights of its own neurons during sleep. CTT has several design choices: how neu
 scored, how replacements are built, how newborns are stabilised, and the balance of killing and
 rebuilding. The balance is <a href="delfava.html">Nathan's half of the project</a>. Scoring is mine,
 and the source method left it fixed to a single gradient-based rule.</p>
- 
+
 <h2>Research question</h2>
- 
+
 <p class="question">Does Hebbian-scored neural turnover during simulated sleep cycles enable more
 robust long-term and short-term memory consolidation in an LSTM foraging agent than the original CTT
 scoring, in a reinforcement-learning setting whose rewards reverse across seasons?</p>
- 
+
 <p>It tests continual learning in a reinforcement-learning environment
 that is adversarially non-stationary: the environment is fixed, but the reward function itself reverses
 between seasons, so a patch that nourishes the agent in one season becomes toxic in another. There are
 two testable hypotheses.</p>
- 
+
 <ol class="stages">
 <li><strong>H1.</strong> GHOST's Hebbian co-activation scoring produces greater retention of earlier
 seasons than the original CTT scoring, measured through survivability and forgetting rates.</li>
 <li><strong>H2.</strong> The CTT architecture, regardless of the scorer, retains more learned behaviour
 across seasons than the three baselines, measured through retention and mid-season performance.</li>
 </ol>
- 
+
 <h2>The environment</h2>
 
 <figure>
-<img src="assets/trajectory_CTT_GHOST.png" alt="A 20 by 20 foraging grid with the agent spawned in the middle and twelve food patches scattered across the field, with the current season indicated" width="500px" height="500px" class="center">
+<img src="assets/trajectory_CTT_GHOST.png" alt="A 20 by 20 foraging grid with the agent spawned in the middle and twelve food patches scattered across the field, with the current season indicated">
 <figcaption>Figure 1: The foraging environment, GHOST CTT, seed 48. The agent spawns in the middle of a 20&times;20 field
 and must eat the right patches to survive. Which patches are safe depends on the season.</figcaption>
 </figure>
- 
+
 <p>The environment is broadly a sequence of foraging tasks. It is a 20&times;20 grid, i.e. 400 cells,
 with the agent spawned in the middle, and twelve patches of food scattered across the field. The agent
 holds a store of energy that drains over time, and survives by finding and eating patches before it
 starves. Twelve patches was chosen to keep food sparse enough to promote exploration but dense enough
 that the agent can reasonably survive.</p>
- 
-<p>The environment undergoes a year of four seasons: summer, autumn, winter, spring, 
+
+<p>The environment undergoes a year of four seasons: summer, autumn, winter, spring,
 of 800 episodes each, so the entire experiment lasts 3,200 episodes, and each episode allows up to 2,000
 steps for the agent to survive. Every patch is tied to a season. If a patch matches the current season
 the agent is fed and positively rewarded; if it belongs to an adjacent season it yields nothing; if it
@@ -120,62 +126,62 @@ is completely out of season the food is labelled toxic and is an instant death i
 The seasons are one-hot coded and observable to the agent, alongside its position and the patches in
 its limited view scope, so it can in principle tell which food is currently safe. The agent is never given a target
 action, instead learning purely from the scalar reward over time.</p>
- 
+
 <h2>The agent and the turnover cycle</h2>
- 
+
 <p>All five models share the same backbone, so any difference comes from the intervention and not from
 capacity. Observations of 105 values pass through a two-layer LSTM core of 128 units per layer into a
 plastic hidden layer, then a policy head over the five moves and a value head used as a learning
 baseline. The three baselines use this backbone directly. The two CTT models add the plastic layer and
 turn it over; turnover only ever touches that layer. Every model is trained with PPO and generalised
 advantage estimation.</p>
- 
+
 <p>Training alternates a wake cycle, where the agent forages and its neurons are observed, with a sleep
 cycle, where turnover happens. I undergo sleep every 50 episodes, so that turnover happens during
 downtime rather than continuously, as the Synaptic Homeostasis Hypothesis proposes. Each sleep runs
 five steps, acting on the plastic layer alone.</p>
- 
+
 <figure>
 <img src="assets/Day_Night.drawio.png" alt="The mapping of the GHOST Scorer's pipeline">
 <figcaption>Figure 2: The pipeline of the CTT_GHOST architecture.</figcaption>
 </figure>
- 
+
 <h2>The scoring rule</h2>
- 
+
 <p>The original CTT scorer rates a neuron by importance minus
 redundancy, acting as a min&ndash;max rule that keeps neurons that are important to the output but
 distinct from one another:</p>
- 
+
 <figure>
 <img src="assets/scorer_eq.png" alt="The original CTT survival score: S of i equals alpha times importance of i minus beta times redundancy of i, where importance is the product of running averages of activation and gradient magnitude, and redundancy is the strongest correlation with another neuron">
 <figcaption>Figure 3: The original CTT score. Importance is a running average of activation magnitude
 multiplied by a running average of gradient magnitude, so the rule depends on the loss.</figcaption>
 </figure>
- 
+
 <p>GHOST is inspired instead by Hebbian learning, whose tagline is that neurons that fire together
 wire together. It adapts that idea into a scoring mechanism: a neuron's importance is a weighted
 co-activation between the neuron and its inputs, with a leading Oja-style normalisation so that
 importance reflects structured responsiveness rather than raw wiring magnitude.</p>
- 
+
 <figure>
 <img src="assets/ghost_eq.png" alt="The GHOST score: G of i equals one over the sum of absolute incoming weights plus epsilon, times the sum over j of the absolute weight from input j times the Pearson correlation between input j and the activation of neuron i">
 <figcaption>Figure 4: The GHOST score. It reads weight magnitudes and the correlation between a
 neuron and its inputs, both detached from the computation graph, so no gradient enters the score.</figcaption>
 </figure>
- 
+
 <p> The reason a gradient-free rule might help is that under reward reversal the most
 recent gradient points the wrong way for the earlier seasons, so a score that ignores it should protect
 neurons that are structurally responsive rather than ones that merely moved the loss on the current,
 now-inverted task.</p>
- 
+
 <h2>How I tested it</h2>
- 
+
 <p>The base LSTM was tuned first, and dropout, zoneout and the CTT parameters were tuned on top of that
 shared base, so no model is handicapped by another's settings. Each of the five models was run over ten
 seeds for the full 3,200 episodes; no run exhibited policy collapse or sustained reward divergence. To
 measure what each network retained rather than how it adapts, I froze the final weights and evaluated
 over 200 episodes per season, averaged across the ten seeds.</p>
- 
+
 <p>For each season and metric I first apply a Friedman test across all five models. Where it is
 significant, I apply post-hoc Wilcoxon signed-rank tests for three pre-specified comparisons:
 GHOST versus the original scorer, and each CTT variant against the base LSTM with
@@ -183,26 +189,26 @@ Holm&ndash;Bonferroni correction for multiple comparisons. I report matched-pair
 sizes and bootstrap confidence intervals. Survivability and steps are floor-bounded: below roughly 500
 steps the agent has eaten something toxic and died early, and retention is only meaningful for a season
 a model actually learned, so a learning gate is checked first.</p>
- 
+
 <h2>Results</h2>
- 
+
 <h3>1. Four of the five models learned the task</h3>
- 
+
 <p>Forgetting is only meaningful for a season a model actually mastered, so the first step is to
 establish which seasons were learned. Probing each model on its own season's checkpoint, the base LSTM,
 zoneout and both CTT models cleared the learning gate on summer, autumn and winter, reaching 50&ndash;90%
 peak survivability. Dropout did not: it failed the gate in every season, never rising significantly
 above the starvation line. I therefore exclude dropout from the retention comparisons, since a model
 cannot forget a task it never attained.</p>
- 
+
 <h3>2. The CTT architecture outlives plain LSTMs in the middle seasons</h3>
- 
+
 <figure>
 <img src="assets/survivability.png" alt="Heatmap of final-model survivability for the five models across the four seasons, showing all models at zero on summer, the two CTT models at twenty to thirty percent on autumn and winter while the baselines are at zero, and higher survival for most models on spring">
 <figcaption>Figure 5: Final-model survivability over ten seeds. Summer is lost by every model; autumn
 and winter are where the CTT architecture separates from the baselines.</figcaption>
 </figure>
- 
+
 <p>On the frozen final weights, the two CTT models retained measurable survival in autumn and winter
 (20&ndash;30%) while all three baselines had collapsed to 0%. Episode length tells the same story and
 exposes the partial survival the binary rate hides. In both autumn and winter the Friedman test is
@@ -211,16 +217,16 @@ the base LSTM after correction (autumn: both CTT models p&nbsp;=&nbsp;0.047; win
 p&nbsp;=&nbsp;0.012, GHOST p&nbsp;=&nbsp;0.047). Baselines sat at or near the starvation line of 500
 steps while the CTT variants persisted for notably longer. The architecture consolidates a measurable
 survival advantage over a standard LSTM even where neither approach achieves full survival.</p>
- 
+
 <h3>3. The Hebbian scorer does not beat the original</h3>
- 
+
 <p>The question the project was built to answer is whether GHOST improves on the original CTT scoring,
 and the answer is no. Across all three metrics and all four seasons, no comparison between GHOST and the
 original scorer reached statistical significance; the smallest corrected p-value was 0.19. While GHOST
 showed numerically higher spring performance, these differences did not survive correction at ten seeds.
 I therefore find no evidence that the Hebbian co-activation criterion notably outperforms the original
 redundancy&ndash;importance criterion. At best, the two perform on par with one another.</p>
- 
+
 <div class="scroll">
 <table>
 <tr>
@@ -261,13 +267,13 @@ redundancy&ndash;importance criterion. At best, the two perform on par with one 
 </tr>
 </table>
 </div>
- 
+
 <p>This is a bounded null rather than a missing measurement. The comparison is exactly paired over ten
 seeds on the same seasons, and it consistently finds the two scoring rules landing on top of each other.
 Whatever benefit CTT provides is not coming from the choice of scoring rule.</p>
- 
+
 <h3>4. The first season is lost no matter what</h3>
- 
+
 <p>That collapse is uniform for the earliest season. Every model that learned summer, peak
 survivability of 80-90% over durations of 1,795 to 2,000 steps, regressed almost entirely
 to the starvation floor by the end of training, with final-model summer survivability of 0% for all five
@@ -275,9 +281,9 @@ models and significant forgetting for every learner. While some seed evidence po
 architectures remembering fragments of a summer strategy, it is not consistent enough to be
 statistically significant. Summer was demonstrably acquired and then almost entirely lost, turnover or
 not.</p>
- 
+
 <h3>5. Retention is a property of the architecture, not the scorer</h3>
- 
+
 <p>Comparing each season's learned peak against the final model's performance localises the benefit. In
 autumn both CTT architectures retained a meaningful fraction of their learned step-count (retention 0.30
 and 0.35) and forgot significantly less than the base LSTM, whose retention went negative, its
@@ -288,9 +294,9 @@ and the original scorer forgot the same amount as each other in every season. Wh
 to catastrophic forgetting, it is a property of the turnover architecture, i.e. structured death
 and rebirth with gating, plus the integrated EWC and replay consolidation, shared by both
 variants, and not of the scoring criterion.</p>
- 
+
 <h2>Findings</h2>
- 
+
 <ul>
 <li>The Hebbian criterion realised no advantage over the original importance&ndash;redundancy score. On
 every metric and season the two were statistically indistinguishable, smallest corrected
@@ -304,9 +310,9 @@ comparison.</li>
 <li>GHOST is genuinely gradient-free, so a scorer can read activity and weights alone and lose nothing
 against one that reads the gradient, but also gain nothing.</li>
 </ul>
- 
+
 <h2>What this means</h2>
- 
+
 <ul>
 <li><strong>The benefit of CTT lives in the architecture, not the scorer.</strong> Structured turnover,
 gating and consolidation move retention; which neurons they protect is, on this evidence, a second-order
@@ -325,9 +331,9 @@ adversarial reward-reversal non-stationarity rather than at the scoring rule.</l
 matched, but did not beat, an engineered one. Fidelity to a mechanism is not a guarantee of a
 computational advantage.</li>
 </ul>
- 
+
 <h2>Limitations and future work</h2>
- 
+
 <ul>
 <li>CTT here bundles turnover, gating, EWC and replay together. A systematic ablation isolating each is
 needed to say which component actually drives the mid-season retention.</li>
@@ -339,9 +345,9 @@ non-stationary task, where the reward shifts but never fully inverts, is open.</
 <li>The more pressing open problem is not a better scorer but understanding why consolidation methods
 effective in supervised continual learning do not transfer to reward-reversing reinforcement settings.</li>
 </ul>
- 
+
 <h2>Key references</h2>
- 
+
 <ul>
 <li>Learning via Destruction: Targeted Neuron Turnover for Damage-Tolerant Sequence Memory. The source
 CTT method.</li>
