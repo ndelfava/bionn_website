@@ -140,6 +140,40 @@ ol.stages li {
     padding-left: 0.8em;
 }
 
+/* key numbers */
+
+ul.keyfacts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8em;
+    list-style: none;
+    margin: 1.5em 0;
+    padding-left: 0;
+}
+
+ul.keyfacts li {
+    background-color: var(--paper);
+    border-left: 4px solid var(--sage);
+    flex: 1 1 200px;
+    margin-bottom: 0;
+    padding: 0.6em 0.9em;
+}
+
+ul.keyfacts strong {
+    color: var(--slate);
+    display: block;
+    font-size: 1.6em;
+    line-height: 1.3;
+}
+
+/* research question */
+
+p.question {
+    border-left: 4px solid var(--clay);
+    font-size: 1.1em;
+    padding-left: 0.8em;
+}
+
 /* figures */
 
 figure {
@@ -176,6 +210,16 @@ th, td {
 
 th {
     background-color: var(--paper);
+}
+
+/* wide tables scroll sideways on small screens */
+
+div.scroll {
+    overflow-x: auto;
+}
+
+div.scroll table {
+    min-width: 560px;
 }
 
 /* footer */
