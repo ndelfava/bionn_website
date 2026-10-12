@@ -139,6 +139,12 @@ ol.stages li {
     padding-left: 0.8em;
 }
 
+ol.stages li:nth-child(1) { border-left-color: #f4524d; }
+ol.stages li:nth-child(2) { border-left-color: #f59a23; }
+ol.stages li:nth-child(3) { border-left-color: #ffd43b; }
+ol.stages li:nth-child(4) { border-left-color: #2ca24c; }
+ol.stages li:nth-child(5) { border-left-color: #1b84a0; }
+
 /* key numbers */
 
 ul.keyfacts {
@@ -245,4 +251,54 @@ div.scroll table {
 
 #footer p {
     margin: 0.8em 0 0;
+}
+
+/* results: one figure per student, side by side, stacked on narrow screens */
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+}
+
+.image-container figure {
+    flex: 1 1 360px;
+    margin: 0.5em 0 0;
+}
+
+.image-container h3 {
+    margin: 0;
+    text-align: center;
+}
+
+.image-container .figure-topic {
+    color: #444444;
+    margin: 0 0 0.6em;
+    text-align: center;
+}
+
+/* every results figure gets the same 7:5 frame */
+.image-container img {
+    aspect-ratio: 7 / 5;
+    background-color: #ffffff;
+    object-fit: contain;
+    width: 100%;
+}
+
+/* one takeaway per results figure, lined up under its figure */
+
+ul.takeaways {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.takeaways li {
+    background-color: var(--paper);
+    border-left: 4px solid var(--sage);
+    flex: 1 1 360px;
+    margin-bottom: 0;
+    padding: 0.6em 0.9em;
 }

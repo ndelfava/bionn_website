@@ -74,19 +74,37 @@ stable.</li>
 
 <h2>Results</h2>
 
+<div class="image-container">
+
 <figure>
+<h3><a href="shaboodien.html">Ziyaad Shaboodien</a></h3>
+<p class="figure-topic">Scoring experiment</p>
 <img src="assets/survivability.png" alt="Heatmap of survival rate by season for LSTM Base, Dropout, Zoneout, CTT_Normal and CTT_GHOST">
-<figcaption>Figure 1: Survival rate of the final model in each season of the foraging task
-sequence. The baseline, dropout and zoneout models survive only the last season they saw.
-Both CTT variants retain some ability in earlier seasons.</figcaption>
+<figcaption>Figure 1: Survival rate of the final model in each season, after training
+through Summer, Autumn, Winter and Spring in that order.</figcaption>
 </figure>
 
 <figure>
-<img src="assets/scale_generalisation.png" alt="Solve rate against maze size for the baseline LSTM, CTT and a death-only condition">
-<figcaption>Figure 2: Zero-shot solve rate on mazes larger than those used in training. CTT
-and the baseline LSTM both reach 71% at 13x13. The death-only condition, which removes
-neurons without replacing them, reaches 54%.</figcaption>
+<h3><a href="delfava.html">Nathan Del Fava</a></h3>
+<p class="figure-topic">Turnover experiment</p>
+<img src="assets/delfava_scale_compact.svg" alt="Solve rate against maze size: the baselines and the CTT ratios that rebuild both fall to about 71 percent at 13x13, while death-only falls to 54 percent">
+<figcaption>Figure 2: Zero-shot solve rate on mazes up to 13x13 for agents trained only on
+7x7. Mean and standard error over 8 seeds.</figcaption>
 </figure>
+
+</div>
+
+<h3>Key takeaways</h3>
+
+<ul class="takeaways">
+<li><strong>Figure 1.</strong> Only CTT remembers earlier seasons. No baseline survives any
+season before Spring, the last one it trained on, while both CTT variants keep 10 to 30%
+survival in Autumn and Winter.</li>
+<li><strong>Figure 2.</strong> The kill/birth ratio does not change generalisation. The ratios
+that rebuild track the baselines down to 71% at 13x13, while death-only, which never replaces
+what it kills, falls to 54%.</li>
+</ul>
+
 
 <h2>Conclusions</h2>
 
